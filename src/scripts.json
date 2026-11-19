@@ -1,0 +1,124 @@
+{
+ "v01_pidge_mirror_test": {
+  "voice": "en_US-ryan-high",
+  "length_scale": 0.95,
+  "pitch": 1.0,
+  "chunks": [
+   {
+    "start": 0,
+    "end": 3,
+    "say": "Hey human. Yes, you.",
+    "sub": "Hey human. Yes, you."
+   },
+   {
+    "start": 3,
+    "end": 6,
+    "say": "Did you just call me a bird-brain?",
+    "sub": "Did you just call me a bird-brain?"
+   },
+   {
+    "start": 6,
+    "end": 12,
+    "say": "Let me tell you something. I can recognise myself in a mirror. Dogs cannot. Cats cannot. Pigeons can.",
+    "sub": "I can recognise myself in a mirror. Dogs cannot. Cats cannot."
+   },
+   {
+    "start": 12,
+    "end": 19,
+    "say": "Scientists even taught us to tell the difference between paintings by Monet and Picasso.",
+    "sub": "Scientists taught pigeons to tell Monet from Picasso."
+   },
+   {
+    "start": 19,
+    "end": 24,
+    "say": "Can YOU do that? Exactly.",
+    "sub": "Can YOU do that? Exactly."
+   },
+   {
+    "start": 24,
+    "end": 30,
+    "say": "Next time, show some respect. I'm basically a feathered genius.",
+    "sub": "Show some respect. I'm a feathered genius."
+   }
+  ]
+ },
+ "v02_octavia_three_hearts": {
+  "voice": "en_GB-jenny_dioco-medium",
+  "length_scale": 0.95,
+  "pitch": 1.0,
+  "chunks": [
+   {
+    "start": 0,
+    "end": 4,
+    "say": "Darling... you don't understand my pain.",
+    "sub": "Darling, you don't understand my pain."
+   },
+   {
+    "start": 4,
+    "end": 11,
+    "say": "I have THREE hearts. Two pump blood to my gills, one to the rest of me. So when someone breaks my heart, it's a triple tragedy.",
+    "sub": "I have THREE hearts. Two for my gills, one for my body."
+   },
+   {
+    "start": 11,
+    "end": 17,
+    "say": "And it gets worse. My blood is blue, because it uses copper instead of iron. Even my sadness is fancy.",
+    "sub": "My blood is blue, because it uses copper, not iron."
+   },
+   {
+    "start": 17,
+    "end": 24,
+    "say": "Also, when I swim, my main heart stops beating. Yes, swimming literally exhausts me.",
+    "sub": "When I swim, my main heart stops beating."
+   },
+   {
+    "start": 24,
+    "end": 30,
+    "say": "Being dramatic is just good biology.",
+    "sub": "Being dramatic is just good biology."
+   }
+  ],
+  "anchor": false,
+  "gap": 0.75
+ },
+ "v03_slowmo_weekly_adventure": {
+  "voice": "en_US-joe-medium",
+  "length_scale": 0.88,
+  "pitch": 0.9,
+  "pause": 0.12,
+  "chunks": [
+   {
+    "start": 0,
+    "end": 6,
+    "say": "Good... morning... Is it Tuesday? Or... Thursday?",
+    "sub": "Good... morning... Is it Tuesday? Or Thursday?"
+   },
+   {
+    "start": 6,
+    "end": 13,
+    "say": "Big... adventure today. I need to... climb down... the tree.",
+    "sub": "Big adventure today. Climbing down the tree."
+   },
+   {
+    "start": 13,
+    "end": 19,
+    "say": "Why? I only go to the bathroom... once a week. On the ground. It takes... hours.",
+    "sub": "I only go to the bathroom once a week."
+   },
+   {
+    "start": 19,
+    "end": 25,
+    "say": "Sloths are so slow... algae grows on our fur. I'm basically... a walking garden.",
+    "sub": "Algae grows on my fur. I'm a walking garden."
+   },
+   {
+    "start": 25,
+    "end": 30,
+    "say": "Now... excuse me... I have... plans... next week.",
+    "sub": "Excuse me... I have plans... next week."
+   }
+  ],
+  "anchor": false,
+  "gap": 0.2
+ }
+}

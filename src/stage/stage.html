@@ -1,0 +1,25 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face { font-family: 'Lucky'; src: url('../fonts/LuckiestGuy.woff2') format('woff2'); }
+@font-face { font-family: 'Baloo'; src: url('../fonts/Baloo2-800.woff2') format('woff2'); font-weight: 800; }
+html, body { margin: 0; width: 540px; height: 960px; overflow: hidden; background: #000; }
+#wrap { position: relative; width: 540px; height: 960px; overflow: hidden; }
+svg { position: absolute; inset: 0; }
+#chip { position: absolute; top: 46px; left: 50%; transform: translateX(-50%); white-space: nowrap;
+  font: 800 17px 'Baloo'; letter-spacing: .06em; color: #1b1b2f; background: rgba(255,255,255,.92);
+  padding: 7px 16px 4px; border-radius: 999px; box-shadow: 0 3px 0 rgba(0,0,0,.25); }
+#chip b { color: #ff7a1a; } .dot { display:inline-block; width: 11px; height: 11px; border-radius: 50%; margin-right: 8px; vertical-align: 1px; }
+#sub { position: absolute; top: 598px; left: 50%; width: 470px; text-align: center; transform-origin: 50% 50%;
+  font: 37px/1.12 'Lucky'; color: #fff; -webkit-text-stroke: 9px #1b1b2f; paint-order: stroke fill;
+  text-shadow: 0 5px 0 rgba(0,0,0,.35); letter-spacing: .01em; }
+#sub .hl { color: #ffd21f; }
+</style></head>
+<body><div id="wrap"><svg id="scene" viewBox="0 0 540 960" width="540" height="960"></svg><div id="chip"></div><div id="sub"></div></div>
+<script src="common.js"></script>
+<script src="chars.js"></script>
+<script>
+const name = new URLSearchParams(location.search).get('v');
+document.write(`<script src="${name}.js"><\/script>`);
+</script>
+</body></html>
