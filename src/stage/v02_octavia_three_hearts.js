@@ -93,8 +93,7 @@ window.SCENE = function (t) {
     s += g(`translate(${cx} 476) scale(0.75)`, crab(t, { walking: t < cE + 1.2, reach }));
     if (t > 26.2) s += g(`translate(270 175) scale(${pop(t, 26.2, 0.4)}) rotate(-5)`,
       `<rect x="-215" y="-48" width="430" height="96" rx="18" fill="#c26ae6" stroke="#1b1b2f" stroke-width="6"/>` + label(0, 18, 'DRAMA = BIOLOGY', { size: 44, sw: 9 }));
-    if (t > 27.6) s += g(`translate(270 860) scale(${pop(t, 27.6, 0.3)})`,
-      `<rect x="-200" y="-36" width="400" height="72" rx="36" fill="#ff2d55" stroke="#1b1b2f" stroke-width="5"/>` + label(0, 14, 'FOLLOW FOR MORE!', { size: 34, sw: 7 }));
+    s += endCard(t, 27.6);
   }
   s += flash(t, [cB, cC, cD, cE]);
   return s;

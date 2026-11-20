@@ -10,4 +10,8 @@ node src/render.js <name>        # frames (Playwright + SVG) -> output/<name>.mp
 node src/render.js <name> --preview 3,10,20   # still frames for checking
 ```
 
-Scripts and subtitles live in `src/scripts.json`; scenes in `src/stage/<name>.js`; characters in `src/stage/chars.js`.
+Batch helpers: `src/sheet.sh <name> 2,10,20` makes a contact sheet of preview frames; `src/queue.sh` is a render worker that
+pulls names from `build/queue.txt`.
+
+Scripts and subtitles live in `src/scripts.json`; scenes in `src/stage/<name>.js`; main characters in `src/stage/chars.js`, supporting cast and props in `src/stage/chars2.js`.
+Publishing notes, captions and the posting order are in `output/UPLOAD_NOTES.md`.

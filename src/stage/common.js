@@ -19,7 +19,7 @@ const Tend = i => DATA.timing[i] ? DATA.timing[i].start + DATA.timing[i].len : 9
 
 // Text with heavy outline (SVG)
 function label(x, y, text, o = {}) {
-  const s = o.size || 34, fill = o.fill || '#fff', stroke = o.stroke || '#1b1b2f', sw = o.sw || s * 0.22;
+  const s = o.size || 34, fill = o.fill || '#fff', stroke = o.stroke || '#1b1b2f', sw = o.sw ?? s * 0.22;
   const font = o.font || 'Lucky';
   return `<text x="${x}" y="${y}" text-anchor="${o.anchor || 'middle'}" font-family="${font}" font-size="${s}"
     fill="${fill}" stroke="${stroke}" stroke-width="${sw}" paint-order="stroke" stroke-linejoin="round"

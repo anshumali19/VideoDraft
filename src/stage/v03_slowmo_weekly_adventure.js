@@ -94,8 +94,7 @@ window.SCENE = function (t) {
     s += card(t, a + len * 0.55, 420, 370, label(0, -22, 'PLANS', { size: 26, fill: '#ff5a4e', sw: 0 }) + label(0, 20, 'NEXT WEEK', { size: 24, fill: '#1b1b2f', sw: 0 }), 170, 110);
     if (sleepy > 0) ['Z', 'z', 'Z'].forEach((z, i) => { const ph = (t * 0.6 + i / 3) % 1;
       s += label(330 + ph * 60, 300 - ph * 120, z, { size: 30 + i * 6, fill: '#fff', op: Math.sin(ph * Math.PI) * clamp(sleepy * 2) }); });
-    if (t > 28.6) s += g(`translate(270 860) scale(${pop(t, 28.6, 0.3)})`,
-      `<rect x="-200" y="-36" width="400" height="72" rx="36" fill="#ff2d55" stroke="#1b1b2f" stroke-width="5"/>` + label(0, 14, 'FOLLOW FOR MORE!', { size: 34, sw: 7 }));
+    s += endCard(t, 28.6);
   }
   s += flash(t, [cB, cC, cD, cE]);
   return s;

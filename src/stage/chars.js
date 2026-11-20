@@ -19,6 +19,7 @@ function pidge(o = {}) {
       <path d="M-56 -118 C-80 -90 -78 -40 -60 -22 C-50 -40 -44 -80 -46 -112Z" fill="#6c7590" stroke="#2b2f3d" stroke-width="4"/>
       <g transform="rotate(${o.pointAng ?? -30} 52 -105)"><path d="M48 -122 C90 -128 130 -118 158 -106 C164 -100 160 -92 150 -94 C120 -92 84 -88 50 -88Z" fill="#6c7590" stroke="#2b2f3d" stroke-width="4"/>
       <path d="M150 -106 l14 -6 M152 -98 l16 0 M148 -92 l14 6" stroke="#2b2f3d" stroke-width="4" stroke-linecap="round"/></g>`,
+    flap: [-1, 1].map(sd => `<g transform="rotate(${sd * (-20 - 40 * Math.abs(Math.sin((o.t || 0) * 18)))} ${sd * 50} -110)"><path d="M${sd * 48} -122 C${sd * 90} -128 ${sd * 140} -118 ${sd * 168} -96 C${sd * 150} -88 ${sd * 120} -84 ${sd * 50} -88Z" fill="#6c7590" stroke="#2b2f3d" stroke-width="4"/></g>`).join(''),
     hold: `
       <path d="M-56 -118 C-80 -90 -78 -40 -60 -22 C-50 -40 -44 -80 -46 -112Z" fill="#6c7590" stroke="#2b2f3d" stroke-width="4"/>
       <path d="M50 -120 C80 -140 96 -170 100 -196 C108 -200 114 -192 110 -184 C104 -156 88 -122 58 -96Z" fill="#6c7590" stroke="#2b2f3d" stroke-width="4"/>`,
@@ -31,9 +32,11 @@ function pidge(o = {}) {
     <path d="M20 -14 L20 0 M20 0 l-14 6 M20 0 l0 9 M20 0 l14 6"/></g>
   <ellipse cx="0" cy="-72" rx="66" ry="70" fill="#97a0b4" stroke="#2b2f3d" stroke-width="5"/>
   <ellipse cx="0" cy="-58" rx="42" ry="48" fill="#b6bdcb"/>
+  ${o.outfit || ''}
   <defs><linearGradient id="irid" x1="0" x2="1"><stop offset="0" stop-color="#3fbf8f"/><stop offset=".5" stop-color="#7d5bd6"/><stop offset="1" stop-color="#3fbf8f"/></linearGradient></defs>
   <ellipse cx="0" cy="-126" rx="46" ry="26" fill="url(#irid)" stroke="#2b2f3d" stroke-width="5"/>
   ${wings[wing]}
+  <g transform="translate(${o.headDx || 0} 0)">
   <circle cx="0" cy="-170" r="46" fill="#868fa4" stroke="#2b2f3d" stroke-width="5"/>
   <g transform="translate(${look * 5} 0)">
     <g transform="translate(0 -172) scale(1 ${eyeSy}) translate(0 172)">
@@ -49,7 +52,9 @@ function pidge(o = {}) {
   <path d="M-11 -158 L11 -158 L0 ${-140 - 2 * m}Z" fill="#3b3f4a" stroke="#2b2f3d" stroke-width="2" stroke-linejoin="round"/>
   <path d="M-8 ${-150 + 3 * m} L8 ${-150 + 3 * m} L0 ${-138 + 13 * m}Z" fill="#4b505d" stroke="#2b2f3d" stroke-width="2" stroke-linejoin="round"/>
   <ellipse cx="0" cy="-159" rx="8" ry="4.5" fill="#f2f2f2"/>
-  ${cap}`;
+  ${o.face || ''}
+  ${cap}
+  </g>`;
 }
 function gradCap() {
   return `<path d="M-26 0 Q0 14 26 0 L26 -14 L-26 -14Z" fill="#1d1d28"/>
@@ -82,6 +87,7 @@ function human(t, o = {}) {
 // ---------- tentacle helper ----------
 function tentacle(x0, y0, ang, len, w0, t, ph, o = {}) {
   const n = 16, L = [], R = [], sk = [];
+  window._tip = null;
   let x = x0, y = y0, a = ang * Math.PI / 180;
   const pts = [];
   for (let i = 0; i <= n; i++) {
@@ -92,6 +98,7 @@ function tentacle(x0, y0, ang, len, w0, t, ph, o = {}) {
     pts.push([x, y, a]);
     x += Math.cos(a) * len / n; y += Math.sin(a) * len / n;
   }
+  window._tip = [x, y, a];
   pts.forEach(([px, py, pa], i) => {
     const k = i / n, w = w0 * (1 - k * 0.88) / 2;
     L.push([px - Math.sin(pa) * w, py + Math.cos(pa) * w]);
@@ -107,15 +114,20 @@ function tentacle(x0, y0, ang, len, w0, t, ph, o = {}) {
 // ---------- OCTAVIA (dramatic octopus) ----------
 // pose: 'lie' (reclined, tentacles to the right), 'swim' (tentacles trailing down)
 function octavia(t, o = {}) {
+  const SK = o.skin || '#c26ae6', SKD = o.skinD || '#8f3fb8', TF = o.skin || '#b05bd6';
   const m = o.m || 0, bl = o.blink || 0, pose = o.pose || 'lie', sad = o.sad ?? 1;
   let tents = '';
   if (pose === 'lie') {
     const spec = [[-20, 10, 230, 0.25], [0, 25, 250, 0.3], [20, 5, 210, 0.2], [-40, 70, 150, 0.4], [40, 60, 160, 0.5], [60, 20, 200, 0.25]];
-    spec.forEach(([dx, a, l, c], i) => tents += tentacle(dx, -40, a, l, 36, t, i * 1.3, { curl: c, amp: 0.25, speed: 1.4 }));
+    spec.forEach(([dx, a, l, c], i) => tents += tentacle(dx, -40, a, l, 36, t, i * 1.3, { curl: c, amp: 0.25, speed: 1.4, fill: TF }));
+  } else if (pose === 'custom') {
+    tents = o.tents || '';
+  } else if (pose === 'stand') {
+    [[-50, 100], [-30, 95], [-10, 88], [10, 92], [30, 85], [50, 80]].forEach(([dx, a], i) => tents += tentacle(dx, -40, a + (i - 2.5) * 10, 120, 32, t, i, { curl: (i % 2 ? 1.6 : -1.6), amp: 0.2, speed: 2, fill: TF }));
   } else {
-    for (let i = 0; i < 7; i++) tents += tentacle(-48 + i * 16, -40, 90 + (i - 3) * 6, 190, 34, t, i, { amp: 0.6, speed: 6 });
+    for (let i = 0; i < 7; i++) tents += tentacle(-48 + i * 16, -40, 90 + (i - 3) * 6, 190, 34, t, i, { amp: 0.6, speed: 6, fill: TF });
   }
-  const forehead = o.forehead ? tentacle(-62, -80, -100, 150, 30, t, 0, { curl: 3.2, amp: 0.05, speed: 1 }) : '';
+  const forehead = o.forehead ? tentacle(-62, -80, -100, 150, 30, t, 0, { curl: 3.2, amp: 0.05, speed: 1, fill: TF }) : '';
   const hearts = o.hearts === false ? '' : [[-38, -58, 'g1'], [38, -58, 'g2'], [0, -50, 'main']].map(([hx, hy, id], i) => {
     const beat = 1 + 0.18 * Math.max(0, Math.sin(t * 7 + i * 0.6)) * (o.stopMain && id === 'main' ? 0 : 1);
     const s = (id === 'main' ? 1.25 : 1) * beat * (o.heartScale || 1);
@@ -128,7 +140,8 @@ function octavia(t, o = {}) {
   const lid = 0.45 + 0.55 * bl;
   return `
   ${tents}
-  <path d="M-92 -70 C-110 -200 -60 -270 0 -270 C60 -270 110 -200 92 -70 C70 -30 -70 -30 -92 -70Z" fill="#c26ae6" stroke="#3a1850" stroke-width="5"/>
+  <path d="M-92 -70 C-110 -200 -60 -270 0 -270 C60 -270 110 -200 92 -70 C70 -30 -70 -30 -92 -70Z" fill="${SK}" stroke="#3a1850" stroke-width="5"/>
+  ${o.texture || ''}
   <ellipse cx="-36" cy="-226" rx="18" ry="11" fill="#e3a3f5" opacity=".8"/>
   <circle cx="40" cy="-210" r="7" fill="#9b4bc2" opacity=".7"/><circle cx="-60" cy="-170" r="5" fill="#9b4bc2" opacity=".7"/>
   ${hearts}
@@ -136,7 +149,7 @@ function octavia(t, o = {}) {
     ${[-34, 34].map((ex, i) => `
       <ellipse cx="${ex}" cy="-150" rx="25" ry="28" fill="#fff" stroke="#3a1850" stroke-width="4"/>
       <circle cx="${ex + (i ? -4 : 4)}" cy="-140" r="14" fill="#2a1240"/><circle cx="${ex + (i ? -9 : -1)}" cy="-146" r="4.5" fill="#fff"/>
-      <path d="M${ex - 27} -150 C${ex - 27} -184 ${ex + 27} -184 ${ex + 27} -150 L${ex + 27} ${-178 + 30 * lid} C${ex + 10} ${-170 + 30 * lid} ${ex - 10} ${-170 + 30 * lid} ${ex - 27} ${-178 + 30 * lid}Z" fill="#8f3fb8" stroke="#3a1850" stroke-width="4"/>
+      <path d="M${ex - 27} -150 C${ex - 27} -184 ${ex + 27} -184 ${ex + 27} -150 L${ex + 27} ${-178 + 30 * lid} C${ex + 10} ${-170 + 30 * lid} ${ex - 10} ${-170 + 30 * lid} ${ex - 27} ${-178 + 30 * lid}Z" fill="${SKD}" stroke="#3a1850" stroke-width="4"/>
       <g stroke="#2a1240" stroke-width="4" stroke-linecap="round">
         ${[0, 1, 2].map(j => { const lx = ex + (i ? 1 : -1) * (12 + j * 8), ly = -178 + 30 * lid + 4 - j * 2; return `<path d="M${lx} ${ly} l${(i ? 1 : -1) * 6} -10"/>`; }).join('')}
       </g>`).join('')}
@@ -178,8 +191,10 @@ function slowmo(t, o = {}) {
   const fur = '#a07a52', furD = '#7c5a3a', face = '#e9d3b0';
   const claws = (x, y, r = 0) => g(`translate(${x} ${y}) rotate(${r})`,
     `<path d="M-10 0 q-6 18 4 26 M0 0 q-2 20 8 26 M10 0 q2 18 12 22" stroke="#3b2a1a" stroke-width="5" fill="none" stroke-linecap="round"/>`);
+  const ht = (o.headTurn || 0) * Math.PI / 180, fx = Math.sin(ht) * 46, fs = Math.max(0.35, Math.abs(Math.cos(ht))), faceVis = Math.cos(ht) > -0.25;
   const head = (hx, hy) => `
     <circle cx="${hx}" cy="${hy}" r="62" fill="${fur}" stroke="#3b2a1a" stroke-width="5"/>
+    <g transform="translate(${hx + fx} ${hy}) scale(${fs} 1) translate(${-hx} ${-hy})" opacity="${faceVis ? 1 : 0}">
     <ellipse cx="${hx}" cy="${hy + 6}" rx="50" ry="42" fill="${face}"/>
     ${[-1, 1].map(s => `<path d="M${hx + s * 6} ${hy - 6} C${hx + s * 22} ${hy - 22} ${hx + s * 50} ${hy - 6} ${hx + s * 46} ${hy + 14} C${hx + s * 36} ${hy + 22} ${hx + s * 16} ${hy + 10} ${hx + s * 6} ${hy - 6}Z" fill="#5a3f27"/>`).join('')}
     ${[-1, 1].map(s => `<g>
@@ -188,6 +203,12 @@ function slowmo(t, o = {}) {
        <path d="M${hx + s * 26 - 12} ${hy - 13 + 14 * lid} L${hx + s * 26 + 12} ${hy - 13 + 14 * lid}" stroke="#1b120a" stroke-width="3" stroke-linecap="round"/></g>`).join('')}
     <ellipse cx="${hx}" cy="${hy + 16}" rx="10" ry="7" fill="#2a1a0e"/>
     <path d="M${hx - 16} ${hy + 30} Q${hx} ${hy + 40 + 8 * m} ${hx + 16} ${hy + 30}" stroke="#2a1a0e" stroke-width="4" fill="${m > 0.15 ? '#7a2b2b' : 'none'}" stroke-linecap="round"/>
+    ${o.goggles ? `<g stroke="#1b1b2f" stroke-width="4"><path d="M${hx - 62} ${hy - 2} H${hx + 62}" stroke="#2f7de1" stroke-width="7"/><circle cx="${hx - 26}" cy="${hy}" r="17" fill="rgba(140,220,255,.55)"/><circle cx="${hx + 26}" cy="${hy}" r="17" fill="rgba(140,220,255,.55)"/></g>` : ''}
+    ${o.leaf ? `<path d="M${hx + 8} ${hy + 34} q30 -10 46 6 q-22 18 -46 -6Z" fill="#4fbf3a" stroke="#2b6b2a" stroke-width="3"/>` : ''}
+    </g>
+    ${!faceVis ? `<path d="M${hx - 30} ${hy - 20} q30 20 60 0 M${hx - 26} ${hy + 10} q26 16 52 0" stroke="${furD}" stroke-width="5" fill="none"/>` : ''}
+    ${o.mask ? `<rect x="${hx - 50}" y="${hy - 62}" width="100" height="28" rx="14" fill="#6d5bd0" stroke="#1b1b2f" stroke-width="4"/><path d="M${hx - 30} ${hy - 48} q8 6 16 0 M${hx + 14} ${hy - 48} q8 6 16 0" stroke="#fff" stroke-width="3" fill="none"/>` : ''}
+    ${o.nightcap ? `<path d="M${hx - 56} ${hy - 30} Q${hx - 10} ${hy - 110} ${hx + 70} ${hy - 90} Q${hx + 30} ${hy - 60} ${hx + 56} ${hy - 30}Z" fill="#5fa8ff" stroke="#1b1b2f" stroke-width="4"/><circle cx="${hx + 72}" cy="${hy - 90}" r="10" fill="#fff" stroke="#1b1b2f" stroke-width="3"/>` : ''}
     ${algaePatches(hx, hy - 30, 50, algae, t, 3)}`;
   if ((o.pose || 'hang') === 'hang') {
     const sway = Math.sin(t * 0.9) * 4;
@@ -195,7 +216,8 @@ function slowmo(t, o = {}) {
       <path d="M-40 0 C-50 60 -50 110 -40 150" stroke="${fur}" stroke-width="34" fill="none" stroke-linecap="round"/>
       <path d="M40 0 C50 60 50 110 40 150" stroke="${fur}" stroke-width="34" fill="none" stroke-linecap="round"/>
       ${claws(-40, -14, 180)}${claws(40, -14, 180)}
-      <ellipse cx="0" cy="230" rx="78" ry="100" fill="${fur}" stroke="#3b2a1a" stroke-width="5"/>
+      <ellipse cx="0" cy="230" rx="78" ry="100" fill="${o.pj ? '#9ec9ff' : fur}" stroke="#3b2a1a" stroke-width="5"/>
+      ${o.pj ? [0, 1, 2, 3].map(i => { const y = 170 + i * 36, hw = 78 * Math.sqrt(1 - ((y - 230) / 100) ** 2) - 5; return `<path d="M${-hw} ${y} H${hw}" stroke="#5f8fe0" stroke-width="8" opacity=".7"/>`; }).join('') : ''}
       <path d="M-50 200 q10 20 0 40 M50 210 q-10 20 0 40 M-20 280 q6 14 0 26 M24 270 q-6 14 0 26" stroke="${furD}" stroke-width="5" fill="none" stroke-linecap="round"/>
       ${algaePatches(0, 230, 70, algae, t, 7)}
       ${o.cup ? g(`translate(70 220) rotate(${Math.sin(t) * 3})`, `<path d="M-60 -40 C-20 -10 0 0 0 0" stroke="${fur}" stroke-width="28" fill="none" stroke-linecap="round"/>

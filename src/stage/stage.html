@@ -18,8 +18,10 @@ svg { position: absolute; inset: 0; }
 <body><div id="wrap"><svg id="scene" viewBox="0 0 540 960" width="540" height="960"></svg><div id="chip"></div><div id="sub"></div></div>
 <script src="common.js"></script>
 <script src="chars.js"></script>
+<script src="chars2.js"></script>
 <script>
 const name = new URLSearchParams(location.search).get('v');
-document.write(`<script src="${name}.js"><\/script>`);
+// base sets (backgrounds/props) live in the first three videos; the target video loads last
+['v01_pidge_mirror_test', 'v02_octavia_three_hearts', 'v03_slowmo_weekly_adventure', name].forEach(n => document.write(`<script src="${n}.js"><\/script>`));
 </script>
 </body></html>

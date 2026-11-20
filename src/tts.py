@@ -38,11 +38,26 @@ def chunk_audio(text, cfg, ls, path):
 
 def main(name):
     cfg = json.load(open(os.path.join(ROOT, "src", "scripts.json")))[name]
+    for attempt in range(5):
+        try:
+            return build(name, cfg)
+        except Overflow as e:
+            print(e, "-> retrying faster")
+            cfg["length_scale"] = round(cfg["length_scale"] * 0.95, 3)
+            cfg["gap"] = round(cfg.get("gap", 0.35) * 0.6, 3)
+            if cfg.get("pause"): cfg["pause"] = round(cfg["pause"] * 0.7, 3)
+            cfg["anchor"] = False
+    sys.exit(f"{name}: could not fit in 30 s")
+
+class Overflow(Exception): pass
+
+def build(name, cfg):
     d = os.path.join(OUT, name); os.makedirs(d, exist_ok=True)
     timing = []; cursor = 0.15
     for i, c in enumerate(cfg["chunks"]):
         ls = cfg["length_scale"]; p = os.path.join(d, f"c{i}.wav")
-        chunk_audio(c["say"], cfg, ls, p)
+        if not (os.environ.get("REUSE") and os.path.exists(p)):
+            chunk_audio(c["say"], cfg, ls, p)
         L = dur(p)
         st = max(cursor, c["start"] + 0.1) if cfg.get("anchor", True) else cursor
         timing.append({"i": i, "start": round(st, 2), "len": round(L, 2)})
@@ -50,7 +65,13 @@ def main(name):
         print(name, i, f"start={st:.2f} len={L:.2f} end={st+L:.2f}")
     end = timing[-1]["start"] + timing[-1]["len"]
     if end > TOTAL - 0.6:
-        sys.exit(f"{name}: voiceover ends at {end:.2f}s, too long")
+        raise Overflow(f"{name}: voiceover ends at {end:.2f}s, too long")
+    if not cfg.get("anchor", True) and len(timing) > 1:
+        # spread any spare time across the pauses so the track fills ~29 s
+        extra = min(1.4, max(0.0, (TOTAL - 1.0 - end) / (len(timing) - 1)))
+        for k, tm in enumerate(timing):
+            tm["start"] = round(tm["start"] + extra * k, 2)
+        print(name, f"spread +{extra:.2f}s per pause, ends {timing[-1]['start'] + timing[-1]['len']:.2f}")
     # mix with ffmpeg: delay each chunk, optional pitch shift, pad to 30 s
     inputs, filt = [], []
     pitch = cfg.get("pitch", 1.0)

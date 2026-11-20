@@ -133,8 +133,7 @@ window.SCENE = function (t) {
     if (place >= 1) s += sparkles(t, 270, 270, 120, 10, '#ffd21f', 3);
     if (t > cF + 2.6) s += g(`translate(270 175) scale(${pop(t, cF + 2.6, 0.4)}) rotate(-6)`,
       `<rect x="-215" y="-48" width="430" height="96" rx="18" fill="#ff7a1a" stroke="#1b1b2f" stroke-width="6"/>` + label(0, 18, 'FEATHERED GENIUS', { size: 44, sw: 9 }));
-    if (t > 28.9) s += g(`translate(270 860) scale(${pop(t, 28.9, 0.3)})`,
-      `<rect x="-200" y="-36" width="400" height="72" rx="36" fill="#ff2d55" stroke="#1b1b2f" stroke-width="5"/>` + label(0, 14, 'FOLLOW FOR MORE!', { size: 34, sw: 7 }));
+    s += endCard(t, 28.9);
   }
   s += flash(t, [cA, cB, cC, cD, cE, cF]);
   return s;

@@ -120,5 +120,469 @@
   ],
   "anchor": false,
   "gap": 0.2
+ },
+ "v04_pidge_makes_milk": {
+  "voice": "en_US-ryan-high",
+  "length_scale": 0.95,
+  "pitch": 1.0,
+  "chunks": [
+   {
+    "start": 0,
+    "end": 5,
+    "say": "Everyone thinks only mammals make milk.",
+    "sub": "Everyone thinks only mammals make milk."
+   },
+   {
+    "start": 5,
+    "end": 11,
+    "say": "Wrong, cow. I make milk too. It's called crop milk, and I make it in my throat.",
+    "sub": "Wrong, cow. I make milk too. It's called crop milk."
+   },
+   {
+    "start": 11,
+    "end": 18,
+    "say": "And here's the best part: dad pigeons make it too. Both parents feed the babies. Yes, I'm a dad and a milk factory.",
+    "sub": "Dad pigeons make it too. Both parents feed the babies."
+   },
+   {
+    "start": 18,
+    "end": 23,
+    "say": "Flamingos and penguins do it as well.",
+    "sub": "Flamingos and penguins do it as well."
+   },
+   {
+    "start": 23,
+    "end": 30,
+    "say": "So next time you're stepping around me on the pavement, remember: I'm doing more parenting than your whole street.",
+    "sub": "I'm doing more parenting than your whole street."
+   }
+  ]
+ },
+ "v05_octavia_eight_arms": {
+  "voice": "en_GB-jenny_dioco-medium",
+  "length_scale": 0.95,
+  "pitch": 1.0,
+  "anchor": false,
+  "gap": 0.6,
+  "chunks": [
+   {
+    "start": 0,
+    "end": 5,
+    "say": "People ask how I multitask. Simple.",
+    "sub": "People ask how I multitask. Simple."
+   },
+   {
+    "start": 5,
+    "end": 13,
+    "say": "About two thirds of my neurons are in my arms, not my head.",
+    "sub": "Two thirds of my neurons are in my ARMS, not my head."
+   },
+   {
+    "start": 13,
+    "end": 19,
+    "say": "Each arm can think for itself. Left arm number three is sipping tea, and has no idea what arm number six is doing.",
+    "sub": "Each arm can think for itself."
+   },
+   {
+    "start": 19,
+    "end": 25,
+    "say": "My head just says, please, everyone, behave.",
+    "sub": "My head just says, please, everyone, behave."
+   },
+   {
+    "start": 25,
+    "end": 30,
+    "say": "Honestly, I'm not one octopus. I'm basically a team of eight, and nobody has a manager. Send help.",
+    "sub": "I'm a team of eight with no manager."
+   }
+  ]
+ },
+ "v06_slowmo_sleepy_myth": {
+  "voice": "en_US-joe-medium",
+  "length_scale": 0.88,
+  "pitch": 0.9,
+  "pause": 0.12,
+  "anchor": false,
+  "gap": 0.2,
+  "chunks": [
+   {
+    "start": 0,
+    "end": 6,
+    "say": "They say... I sleep... twenty hours a day. That is... rude.",
+    "sub": "They say I sleep twenty hours a day. Rude."
+   },
+   {
+    "start": 6,
+    "end": 13,
+    "say": "And also... wrong. Scientists tracked wild sloths. We sleep about ten hours.",
+    "sub": "Scientists tracked wild sloths. We sleep about ten hours."
+   },
+   {
+    "start": 13,
+    "end": 19,
+    "say": "Only sloths in zoos... sleep more, because... they're bored.",
+    "sub": "Sloths in zoos sleep more, because they're bored."
+   },
+   {
+    "start": 19,
+    "end": 25,
+    "say": "I'm not lazy... I'm saving energy. My food is... low in calories.",
+    "sub": "My leafy food is low in calories. So I save energy."
+   },
+   {
+    "start": 25,
+    "end": 30,
+    "say": "It's not laziness... it's a lifestyle.",
+    "sub": "It's not laziness. It's a lifestyle."
+   }
+  ]
+ },
+ "v07_pidge_finds_home": {
+  "voice": "en_US-ryan-high",
+  "length_scale": 0.95,
+  "pitch": 1.0,
+  "chunks": [
+   {
+    "start": 0,
+    "end": 4,
+    "say": "Human. Are you lost? Again?",
+    "sub": "Human. Are you lost? Again?"
+   },
+   {
+    "start": 4,
+    "end": 11,
+    "say": "I can fly home from over a thousand kilometres away, in places I've never been.",
+    "sub": "I can fly home from over a thousand kilometres away."
+   },
+   {
+    "start": 11,
+    "end": 18,
+    "say": "No phone. No map. I use the sun, smells, and even the Earth's magnetic field. Yes, I have a built-in compass.",
+    "sub": "No phone. No map. Sun, smells, and Earth's magnetic field."
+   },
+   {
+    "start": 18,
+    "end": 23,
+    "say": "That's why people used us as messengers, even in wars.",
+    "sub": "That's why people used us as messengers."
+   },
+   {
+    "start": 23,
+    "end": 30,
+    "say": "And you? You can't find the exit in a shopping mall. Follow me. Slowly. Keep up.",
+    "sub": "You can't find the mall exit. Follow me."
+   }
+  ]
+ },
+ "v08_octavia_escape_artist": {
+  "voice": "en_GB-jenny_dioco-medium",
+  "length_scale": 0.95,
+  "pitch": 1.0,
+  "anchor": false,
+  "gap": 0.6,
+  "chunks": [
+   {
+    "start": 0,
+    "end": 5,
+    "say": "Locked me in an aquarium? Adorable.",
+    "sub": "Locked me in an aquarium? Adorable."
+   },
+   {
+    "start": 5,
+    "end": 12,
+    "say": "I have no bones, only a hard little beak. If my beak fits through a gap, the rest of me follows.",
+    "sub": "No bones. Only a beak. If it fits, I fit."
+   },
+   {
+    "start": 12,
+    "end": 18,
+    "say": "A crack in a lid? Door. A drain pipe? Highway.",
+    "sub": "A crack in a lid? Door. A drain pipe? Highway."
+   },
+   {
+    "start": 18,
+    "end": 25,
+    "say": "One octopus in New Zealand, named Inky, escaped his tank and slid down a drain into the sea. Nobody saw it happen.",
+    "sub": "Inky the octopus escaped his tank and slid into the sea."
+   },
+   {
+    "start": 25,
+    "end": 30,
+    "say": "Goodbye, humans. Thanks for the snacks.",
+    "sub": "Goodbye, humans. Thanks for the snacks."
+   }
+  ]
+ },
+ "v09_slowmo_goes_swimming": {
+  "voice": "en_US-joe-medium",
+  "length_scale": 0.88,
+  "pitch": 0.9,
+  "pause": 0.12,
+  "anchor": false,
+  "gap": 0.2,
+  "chunks": [
+   {
+    "start": 0,
+    "end": 6,
+    "say": "On land... I'm slow. In water... I'm a legend.",
+    "sub": "On land, I'm slow. In water, I'm a legend."
+   },
+   {
+    "start": 6,
+    "end": 13,
+    "say": "Sloths are great swimmers. We paddle with our long arms... much faster than on land.",
+    "sub": "Sloths are great swimmers. Much faster than on land."
+   },
+   {
+    "start": 13,
+    "end": 21,
+    "say": "We can hold our breath... for around forty minutes.",
+    "sub": "We can hold our breath for around forty minutes."
+   },
+   {
+    "start": 21,
+    "end": 26,
+    "say": "We slow... our... heart down. The only thing... I do... on purpose.",
+    "sub": "We slow our heart down to do it."
+   },
+   {
+    "start": 26,
+    "end": 30,
+    "say": "Meet me at the river. Bring snacks.",
+    "sub": "Meet me at the river. Bring snacks."
+   }
+  ]
+ },
+ "v10_pidge_head_bob": {
+  "voice": "en_US-ryan-high",
+  "length_scale": 0.95,
+  "pitch": 1.0,
+  "chunks": [
+   {
+    "start": 0,
+    "end": 5,
+    "say": "You keep asking, why do you bob your head? I'm not dancing. Mostly.",
+    "sub": "Why do I bob my head? I'm not dancing. Mostly."
+   },
+   {
+    "start": 5,
+    "end": 13,
+    "say": "When I walk, my head jerks forward, then stays still while my body catches up.",
+    "sub": "My head holds still while my body catches up."
+   },
+   {
+    "start": 13,
+    "end": 19,
+    "say": "That holds the picture steady, like a camera on a tripod.",
+    "sub": "That keeps the picture steady, like a tripod."
+   },
+   {
+    "start": 19,
+    "end": 25,
+    "say": "My eyes are on the sides of my head, so I see almost all around me, with only a tiny blind spot behind.",
+    "sub": "My eyes are on the sides. I see almost all around."
+   },
+   {
+    "start": 25,
+    "end": 30,
+    "say": "So yes, I'm judging you from every angle.",
+    "sub": "Yes, I'm judging you from every angle."
+   }
+  ]
+ },
+ "v11_octavia_colour_diva": {
+  "voice": "en_GB-jenny_dioco-medium",
+  "length_scale": 0.95,
+  "pitch": 1.0,
+  "anchor": false,
+  "gap": 0.6,
+  "chunks": [
+   {
+    "start": 0,
+    "end": 4,
+    "say": "Darling, watch this.",
+    "sub": "Darling, watch this."
+   },
+   {
+    "start": 4,
+    "end": 11,
+    "say": "I can change my colour and skin texture in less than a second.",
+    "sub": "I change colour and skin texture in under a second."
+   },
+   {
+    "start": 11,
+    "end": 17,
+    "say": "Rock? Done. Seaweed? Done. Sand? Obviously.",
+    "sub": "Rock? Done. Seaweed? Done. Sand? Obviously."
+   },
+   {
+    "start": 17,
+    "end": 24,
+    "say": "Here's the plot twist: scientists think my eyes can't even see colour.",
+    "sub": "Scientists think my eyes can't see colour."
+   },
+   {
+    "start": 24,
+    "end": 30,
+    "say": "I'm basically a fashion designer who's colour-blind. And yet I'm never wrong. Talent. Pure talent. Applause is optional, but encouraged.",
+    "sub": "A colour-blind fashion designer. Pure talent."
+   }
+  ]
+ },
+ "v12_slowmo_month_lunch": {
+  "voice": "en_US-joe-medium",
+  "length_scale": 0.88,
+  "pitch": 0.9,
+  "pause": 0.12,
+  "anchor": false,
+  "gap": 0.2,
+  "chunks": [
+   {
+    "start": 0,
+    "end": 6,
+    "say": "I just ate... a leaf. Please check back... in a month.",
+    "sub": "I just ate a leaf. Check back in a month."
+   },
+   {
+    "start": 6,
+    "end": 14,
+    "say": "Sloths digest food... very slowly. A single meal can take weeks.",
+    "sub": "A single meal can take weeks to digest."
+   },
+   {
+    "start": 14,
+    "end": 21,
+    "say": "Leaves are tough... and we have a big... slow stomach... full of helpful microbes.",
+    "sub": "Leaves are tough. We have a big, slow stomach."
+   },
+   {
+    "start": 21,
+    "end": 26,
+    "say": "My lunch... is still... in progress. It was... a good leaf.",
+    "sub": "My lunch is still in progress."
+   },
+   {
+    "start": 26,
+    "end": 30,
+    "say": "Do not... rush me. I'm digesting... and judging you.",
+    "sub": "Do not rush me. I'm digesting."
+   }
+  ]
+ },
+ "v13_pidge_doctor": {
+  "voice": "en_US-ryan-high",
+  "length_scale": 0.95,
+  "pitch": 1.0,
+  "chunks": [
+   {
+    "start": 0,
+    "end": 4,
+    "say": "Doctor Pidge, at your service.",
+    "sub": "Doctor Pidge, at your service."
+   },
+   {
+    "start": 4,
+    "end": 12,
+    "say": "Researchers trained pigeons to look at medical images and spot signs of cancer, and the pigeons did surprisingly well.",
+    "sub": "Pigeons were trained to spot signs of cancer in images."
+   },
+   {
+    "start": 12,
+    "end": 18,
+    "say": "Pigeons can also recognise human faces, and learn to tell letters of the alphabet apart.",
+    "sub": "We recognise human faces. We tell letters apart."
+   },
+   {
+    "start": 18,
+    "end": 24,
+    "say": "And you called me a bird-brain? I have a better eye than most of your interns.",
+    "sub": "And you called me a bird-brain?"
+   },
+   {
+    "start": 24,
+    "end": 30,
+    "say": "Please, address me as Doctor. Payment is accepted in breadcrumbs.",
+    "sub": "Call me Doctor. Payment: breadcrumbs."
+   }
+  ]
+ },
+ "v14_octavia_coconut_condo": {
+  "voice": "en_GB-jenny_dioco-medium",
+  "length_scale": 0.95,
+  "pitch": 1.0,
+  "anchor": false,
+  "gap": 0.6,
+  "chunks": [
+   {
+    "start": 0,
+    "end": 5,
+    "say": "Housing prices are crazy, darling. So I made my own home.",
+    "sub": "Housing prices are crazy, darling."
+   },
+   {
+    "start": 5,
+    "end": 12,
+    "say": "Veined octopuses pick up coconut shells, carry them across the sea floor, and hide inside when danger shows up.",
+    "sub": "Veined octopuses carry coconut shells to hide in."
+   },
+   {
+    "start": 12,
+    "end": 18,
+    "say": "That's tool use, and most animals can't do it.",
+    "sub": "That's tool use. Most animals can't do it."
+   },
+   {
+    "start": 18,
+    "end": 24,
+    "say": "Do I look silly, walking with a house? Yes. Am I safe from sharks? Also yes.",
+    "sub": "Do I look silly? Yes. Am I safe? Also yes."
+   },
+   {
+    "start": 24,
+    "end": 30,
+    "say": "Your move, humans. Show me your mortgage.",
+    "sub": "Your move, humans. Show me your mortgage."
+   }
+  ]
+ },
+ "v15_slowmo_does_270": {
+  "voice": "en_US-joe-medium",
+  "length_scale": 0.88,
+  "pitch": 0.9,
+  "pause": 0.12,
+  "anchor": false,
+  "gap": 0.2,
+  "chunks": [
+   {
+    "start": 0,
+    "end": 6,
+    "say": "Do you... want to see... something impressive?",
+    "sub": "Want to see something impressive?"
+   },
+   {
+    "start": 6,
+    "end": 13,
+    "say": "I can turn my head... almost all the way around. About two hundred and seventy degrees.",
+    "sub": "I can turn my head almost 270 degrees."
+   },
+   {
+    "start": 13,
+    "end": 20,
+    "say": "Sloths have extra bones... in our necks.",
+    "sub": "Sloths have extra bones in our necks."
+   },
+   {
+    "start": 20,
+    "end": 26,
+    "say": "So I can see behind me... without moving my body. Which is perfect... because moving... is a lot.",
+    "sub": "I see behind me without moving my body."
+   },
+   {
+    "start": 26,
+    "end": 30,
+    "say": "Follow... for more. I'll post... eventually.",
+    "sub": "Follow for more. I'll post eventually."
+   }
+  ]
  }
 }

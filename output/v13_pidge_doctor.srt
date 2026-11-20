@@ -1,0 +1,19 @@
+1
+00:00:00,100 --> 00:00:04,050
+Doctor Pidge, at your service.
+
+2
+00:00:04,050 --> 00:00:12,050
+Pigeons were trained to spot signs of cancer in images.
+
+3
+00:00:12,050 --> 00:00:18,050
+We recognise human faces. We tell letters apart.
+
+4
+00:00:18,050 --> 00:00:24,050
+And you called me a bird-brain?
+
+5
+00:00:24,050 --> 00:00:29,470
+Call me Doctor. Payment: breadcrumbs.
