@@ -7,6 +7,7 @@ const fs = require('fs'), path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const name = process.argv[2];
 const prevArg = process.argv.indexOf('--preview');
+const coverMode = process.argv.includes('--cover');
 const FPS = 30, DUR = 30;
 
 (async () => {
@@ -23,11 +24,17 @@ const FPS = 30, DUR = 30;
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 540, height: 960 }, deviceScaleFactor: 2 });
   await page.goto('file://' + path.join(ROOT, 'src/stage/stage.html') + '?v=' + name);
-  await page.evaluate(d => window.setData(d), { env, timing, subs, fps: FPS });
+  await page.evaluate(d => window.setData(d), { env, timing, subs, fps: FPS, hook: cfg.hook || null, num: cfg.num || null, hookY: cfg.hookY || null, cover: coverMode });
   await page.evaluate(() => document.fonts.ready);
   await page.evaluate(() => window.drawFrame(0));
   await page.waitForTimeout(300);
 
+  if (coverMode) { // cover image: the opening hook frame, undimmed, 1080x1920
+    const cdir = path.join(ROOT, 'output', 'covers'); fs.mkdirSync(cdir, { recursive: true });
+    await page.evaluate(() => window.drawFrame(0.05));
+    await page.screenshot({ path: path.join(cdir, `${name}.png`) });
+    await browser.close(); return;
+  }
   if (prevArg > 0) {
     const ts = process.argv[prevArg + 1].split(',').map(Number);
     const pdir = path.join(ROOT, 'build', 'preview'); fs.mkdirSync(pdir, { recursive: true });
@@ -52,6 +59,7 @@ const FPS = 30, DUR = 30;
   }
   ff.stdin.end();
   await new Promise(r => ff.on('close', r));
+  fs.writeFileSync(path.join(bdir, 'sfx.json'), JSON.stringify(await page.evaluate(() => window.SFX), null, 1));
   await browser.close();
   console.log('wrote', out);
 })();

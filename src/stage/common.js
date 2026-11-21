@@ -6,7 +6,15 @@ const prog = (t, a, b) => clamp((t - a) / (b - a));
 const easeOut = k => 1 - Math.pow(1 - k, 3);
 const easeInOut = k => (k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2);
 const easeBack = k => { const c = 1.9; return 1 + (c + 1) * Math.pow(k - 1, 3) + c * Math.pow(k - 1, 2); };
-const pop = (t, a, d = 0.35) => easeBack(prog(t, a, a + d));
+// Sound-effect log: every pop-in and scene cut is recorded once, at the frame it starts,
+// so the mixer can put a pop / whoosh exactly there (see src/mix.py).
+window.SFX = []; const SFX_SEEN = new Set();
+function sfxMark(kind, t, a) {
+  if (!(t >= a && t <= a + 1 / (DATA.fps || 30) + 1e-6)) return;
+  const key = kind + Math.round(a * 1000);
+  if (!SFX_SEEN.has(key)) { SFX_SEEN.add(key); window.SFX.push({ kind, t: +a.toFixed(3) }); }
+}
+const pop = (t, a, d = 0.35) => { sfxMark('pop', t, a); return easeBack(prog(t, a, a + d)); };
 const within = (t, a, b) => t >= a && t < b;
 const rnd = s => { const x = Math.sin(s * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
 
@@ -42,6 +50,7 @@ function sparkles(t, cx, cy, r, n = 8, color = '#ffe45c', seed = 1) {
 
 // Cut flash between scenes
 function flash(t, cuts) {
+  for (const c of cuts) sfxMark('whoosh', t, c);
   for (const c of cuts) { const k = prog(t, c, c + 0.18); if (t >= c && k < 1) return `<rect width="${W}" height="${H}" fill="#fff" opacity="${(1 - k) * 0.55}"/>`; }
   return '';
 }
@@ -57,19 +66,32 @@ const cross = (x, y, s = 1, c = '#ff3b3b') => `<path d="M${x - 20 * s} ${y - 20 
 
 // Header chip + subtitle overlay + end card are HTML (crisper text)
 function renderChrome(t, meta) {
-  const sub = DATA.subs.find(s => t >= s.start && t < s.end);
+  const sub = (DATA.hook && t < HOOK_END) ? null : DATA.subs.find(s => t >= s.start && t < s.end);
   const el = document.getElementById('sub');
   if (sub) {
-    const k = pop(t, sub.start, 0.22);
+    const k = easeBack(prog(t, sub.start, sub.start + 0.22));
     const html = sub.text.split(' ').map(w => /[A-Z]{3,}/.test(w.replace(/[^A-Za-z]/g, '')) && w.replace(/[^A-Za-z]/g, '') === w.replace(/[^A-Za-z]/g, '').toUpperCase()
       ? `<span class="hl">${w}</span>` : w).join(' ');
     el.innerHTML = html; el.style.transform = `translateX(-50%) scale(${0.75 + 0.25 * k})`; el.style.opacity = clamp(k * 1.5);
   } else el.style.opacity = 0;
-  document.getElementById('chip').innerHTML = `<span class="dot" style="background:${meta.color}"></span>FUNNY FACTS <b>·</b> ${meta.name}`;
+  document.getElementById('chip').innerHTML = `<span class="dot" style="background:${meta.color}"></span>FUNNY FACTS${DATA.num ? ' #' + String(DATA.num).padStart(2, '0') : ''} <b>·</b> ${meta.name}`;
 }
 
+// Hook card: the video's promise in big text from the very first frame (works with sound off),
+// then it flies away and the scene + subtitles carry on.
+const HOOK_END = 1.7;
+function hookCard(t) {
+  if (!DATA.hook || t >= HOOK_END) return '';
+  const out = clamp((t - (HOOK_END - 0.35)) / 0.35), k = easeInOut(out);
+  const [l1, l2] = DATA.hook;
+  const sz = l => Math.min(50, 450 / (l.length * 0.6));
+  return `<rect width="${W}" height="${H}" fill="#000" opacity="${DATA.cover ? 0 : 0.42 * (1 - k)}"/>` +
+    g(`translate(270 ${(DATA.hookY || 505) + 560 * k}) rotate(-4) scale(${1 + 0.025 * Math.sin(t * 9)})`,
+      `<rect x="-240" y="-82" width="480" height="164" rx="22" fill="#ffd21f" stroke="#1b1b2f" stroke-width="7"/>` +
+      label(0, -14, l1, { size: sz(l1), fill: '#1b1b2f', sw: 0 }) + label(0, 50, l2, { size: sz(l2), fill: '#ff2d55', sw: 0 }));
+}
 window.drawFrame = function (t) {
-  document.getElementById('scene').innerHTML = window.SCENE(t);
+  document.getElementById('scene').innerHTML = window.SCENE(t) + hookCard(t);
   renderChrome(t, window.META);
 };
 window.setData = d => { DATA = d; };

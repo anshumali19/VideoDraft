@@ -195,6 +195,11 @@
     "say": "Honestly, I'm not one octopus. I'm basically a team of eight, and nobody has a manager. Send help.",
     "sub": "I'm a team of eight with no manager."
    }
+  ],
+  "num": 5,
+  "hook": [
+   "2/3 OF HER NEURONS",
+   "ARE IN HER ARMS"
   ]
  },
  "v06_slowmo_sleepy_myth": {
@@ -235,7 +240,13 @@
     "say": "It's not laziness... it's a lifestyle.",
     "sub": "It's not laziness. It's a lifestyle."
    }
-  ]
+  ],
+  "num": 6,
+  "hook": [
+   "SLOTHS SLEEP 20 HOURS?",
+   "WRONG."
+  ],
+  "music_gain": 0.075
  },
  "v07_pidge_finds_home": {
   "voice": "en_US-ryan-high",
@@ -272,7 +283,13 @@
     "say": "And you? You can't find the exit in a shopping mall. Follow me. Slowly. Keep up.",
     "sub": "You can't find the mall exit. Follow me."
    }
-  ]
+  ],
+  "num": 7,
+  "hook": [
+   "1,000 KM HOME.",
+   "NO GPS."
+  ],
+  "hookY": 205
  },
  "v08_octavia_escape_artist": {
   "voice": "en_GB-jenny_dioco-medium",
@@ -311,7 +328,13 @@
     "say": "Goodbye, humans. Thanks for the snacks.",
     "sub": "Goodbye, humans. Thanks for the snacks."
    }
-  ]
+  ],
+  "num": 8,
+  "hook": [
+   "NO BONES MEANS",
+   "NO CAGE CAN HOLD HER"
+  ],
+  "hookY": 205
  },
  "v09_slowmo_goes_swimming": {
   "voice": "en_US-joe-medium",
@@ -351,7 +374,13 @@
     "say": "Meet me at the river. Bring snacks.",
     "sub": "Meet me at the river. Bring snacks."
    }
-  ]
+  ],
+  "num": 9,
+  "hook": [
+   "A SLOTH THAT'S",
+   "ACTUALLY FAST?!"
+  ],
+  "music_gain": 0.075
  },
  "v10_pidge_head_bob": {
   "voice": "en_US-ryan-high",
@@ -388,7 +417,13 @@
     "say": "So yes, I'm judging you from every angle.",
     "sub": "Yes, I'm judging you from every angle."
    }
-  ]
+  ],
+  "num": 10,
+  "hook": [
+   "WHY DO PIGEONS",
+   "BOB THEIR HEADS?"
+  ],
+  "hookY": 205
  },
  "v11_octavia_colour_diva": {
   "voice": "en_GB-jenny_dioco-medium",
@@ -427,7 +462,13 @@
     "say": "I'm basically a fashion designer who's colour-blind. And yet I'm never wrong. Talent. Pure talent. Applause is optional, but encouraged.",
     "sub": "A colour-blind fashion designer. Pure talent."
    }
-  ]
+  ],
+  "num": 11,
+  "hook": [
+   "COLOUR-BLIND...",
+   "AND A COLOUR GENIUS?"
+  ],
+  "hookY": 205
  },
  "v12_slowmo_month_lunch": {
   "voice": "en_US-joe-medium",
@@ -467,7 +508,13 @@
     "say": "Do not... rush me. I'm digesting... and judging you.",
     "sub": "Do not rush me. I'm digesting."
    }
-  ]
+  ],
+  "num": 12,
+  "hook": [
+   "ONE LEAF.",
+   "ONE MONTH TO DIGEST."
+  ],
+  "music_gain": 0.075
  },
  "v13_pidge_doctor": {
   "voice": "en_US-ryan-high",
@@ -504,6 +551,11 @@
     "say": "Please, address me as Doctor. Payment is accepted in breadcrumbs.",
     "sub": "Call me Doctor. Payment: breadcrumbs."
    }
+  ],
+  "num": 13,
+  "hook": [
+   "PIGEONS CAN SPOT",
+   "CANCER IN SCANS"
   ]
  },
  "v14_octavia_coconut_condo": {
@@ -543,7 +595,13 @@
     "say": "Your move, humans. Show me your mortgage.",
     "sub": "Your move, humans. Show me your mortgage."
    }
-  ]
+  ],
+  "num": 14,
+  "hook": [
+   "THIS OCTOPUS",
+   "OWNS A HOUSE"
+  ],
+  "hookY": 205
  },
  "v15_slowmo_does_270": {
   "voice": "en_US-joe-medium",
@@ -583,6 +641,12 @@
     "say": "Follow... for more. I'll post... eventually.",
     "sub": "Follow for more. I'll post eventually."
    }
-  ]
+  ],
+  "num": 15,
+  "hook": [
+   "HIS HEAD TURNS",
+   "270 DEGREES"
+  ],
+  "music_gain": 0.075
  }
 }
