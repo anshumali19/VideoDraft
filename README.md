@@ -1,4 +1,4 @@
-# Queaser — Image · Sound · Motion
+# Morrow — Image · Sound · Motion
 
 A portfolio for a photographer / musician / filmmaker. Plain HTML, CSS and JavaScript:
 no framework, no build step. It's hosted on Vercel.

@@ -12,11 +12,11 @@
    ========================================================================== */
 
 window.SITE = {
-  name: "Queaser",
+  name: "Morrow",
   tagline: "Image · Sound · Motion",
   location: "Based somewhere between frames",
   statement: "I make pictures you can hear and music you can see.",
-  email: "hello@queaser.studio",
+  email: "hello@morrow.studio",
   timezone: "America/New_York",
   socials: [
     { label: "Instagram", url: "https://instagram.com/" },
