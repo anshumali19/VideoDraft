@@ -17,6 +17,15 @@
 html { -webkit-text-size-adjust: 100%; background: var(--bg); }
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+.cinema iframe { pointer-events: auto !important; }
+
+/* scroll ripple (strength driven from JS by scroll velocity) */
+.is-rippling .photo__frame,
+.is-rippling .film__frame,
+.is-rippling .player__cover { filter: url(#ripple); }
 body {
   margin: 0; background: var(--bg); color: var(--fg);
   font-family: var(--sans); font-size: 15px; line-height: 1.4;

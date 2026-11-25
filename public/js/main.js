@@ -100,13 +100,31 @@
   /* ---------------- smooth scroll ---------------- */
   let lenis = null;
   function startLenis() {
-    if (window.Lenis && !isTouch && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      lenis = new Lenis({ lerp: .09, wheelMultiplier: 1 });
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (window.Lenis && !reduced) {
+      lenis = new Lenis({ lerp: .085, smoothWheel: true, syncTouch: true, syncTouchLerp: .075, touchInertiaMultiplier: 28, gestureOrientation: 'vertical' });
       lenis.on('scroll', onScroll);
-      const raf = t => { lenis.raf(t); requestAnimationFrame(raf); }; requestAnimationFrame(raf);
     }
     addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+
+    /* ripple: tiles wobble very slightly with scroll speed, settle when still */
+    const disp = document.getElementById('rippleDisp'), turb = document.getElementById('rippleTurb');
+    let amp = 0, lastY = scrollY, on = false;
+    const raf = t => {
+      if (lenis) lenis.raf(t);
+      const v = lenis ? lenis.velocity : scrollY - lastY; lastY = scrollY;
+      const target = reduced ? 0 : Math.min(Math.abs(v) * .32, 7);
+      amp += (target - amp) * (target > amp ? .18 : .07);
+      if (amp > .12) {
+        if (!on) { document.body.classList.add('is-rippling'); on = true; }
+        const s = t / 1000;
+        disp.setAttribute('scale', amp.toFixed(2));
+        turb.setAttribute('baseFrequency', `${(.0035 + Math.sin(s * .9) * .001).toFixed(5)} ${(.022 + Math.sin(s * 1.7) * .005).toFixed(5)}`);
+      } else if (on) { document.body.classList.remove('is-rippling'); on = false; amp = 0; }
+      requestAnimationFrame(raf);
+    };
+    requestAnimationFrame(raf);
   }
   $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
     const id = a.getAttribute('href'); const t = id === '#top' ? 0 : document.querySelector(id);
