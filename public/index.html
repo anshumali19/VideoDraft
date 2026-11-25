@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Queaser — Image, Sound, Motion</title>
+  <meta name="description" content="Photographs, music and moving image." />
+  <meta name="theme-color" content="#0b0b0a" />
+  <meta property="og:title" content="Queaser — Image, Sound, Motion" />
+  <meta property="og:description" content="Photographs, music and moving image." />
+  <meta property="og:image" content="/media/hero.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0b0a'/%3E%3Ccircle cx='32' cy='32' r='13' fill='none' stroke='%23ece6dc' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%23ff5a1f'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="/media/hero.jpg" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body class="is-loading">
+
+  <!-- PRELOADER -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <div class="loader__name" data-site-name>Queaser</div>
+      <div class="loader__count"><span id="loaderCount">000</span></div>
+    </div>
+    <div class="loader__bar"><span id="loaderBar"></span></div>
+  </div>
+
+  <!-- GRAIN + CURSOR -->
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"><div class="cursor__ring"><span class="cursor__label" id="cursorLabel"></span></div><div class="cursor__dot"></div></div>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav__mark" data-site-name>Queaser</a>
+    <nav class="nav__links" aria-label="Sections">
+      <a href="#image" data-cursor="Go"><i>01</i>Image</a>
+      <a href="#sound" data-cursor="Go"><i>02</i>Sound</a>
+      <a href="#motion" data-cursor="Go"><i>03</i>Motion</a>
+      <a href="#contact" data-cursor="Go"><i>04</i>Contact</a>
+    </nav>
+    <div class="nav__meta">
+      <span class="nav__clock" id="clock">--:--</span>
+      <button class="nav__sound" id="soundToggle" aria-label="Toggle sound" data-cursor="Sound">
+        <span></span><span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <canvas class="hero__gl" id="heroGl"></canvas>
+      <img class="hero__fallback" src="/media/hero.jpg" alt="" />
+      <div class="hero__content">
+        <p class="hero__kicker mono"><span class="dot"></span> <span data-tagline>Image · Sound · Motion</span></p>
+        <h1 class="hero__title" id="heroTitle" aria-label="Queaser"></h1>
+        <div class="hero__foot">
+          <p class="mono hero__loc" data-location>Based somewhere between frames</p>
+          <a href="#image" class="hero__scroll mono" data-cursor="Scroll">Scroll <span class="hero__arrow">↓</span></a>
+          <p class="mono hero__year">Portfolio <span id="yearNow">2026</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MANIFESTO -->
+    <section class="statement">
+      <p class="statement__text reveal-words" data-statement>I make pictures you can hear and music you can see.</p>
+    </section>
+
+    <!-- IMAGE -->
+    <section class="image" id="image">
+      <div class="section-head">
+        <span class="mono">01</span>
+        <h2 class="section-title">Image</h2>
+        <span class="mono section-head__count" id="photoCount"></span>
+      </div>
+      <div class="hscroll" id="hscroll">
+        <div class="hscroll__sticky">
+          <div class="hscroll__track" id="photoTrack"></div>
+          <div class="hscroll__progress"><span id="hProgress"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOUND -->
+    <section class="sound" id="sound">
+      <div class="section-head">
+        <span class="mono">02</span>
+        <h2 class="section-title">Sound</h2>
+        <span class="mono section-head__count" id="trackCount"></span>
+      </div>
+
+      <div class="player" id="player">
+        <div class="player__stage">
+          <div class="player__cover" id="playerCover" data-cursor="Play">
+            <div class="player__coverimg" id="coverImg"></div>
+            <canvas class="player__viz" id="viz"></canvas>
+            <button class="player__big" id="bigPlay" aria-label="Play">
+              <svg viewBox="0 0 24 24" class="i-play"><path d="M7 4.5v15l13-7.5z"/></svg>
+              <svg viewBox="0 0 24 24" class="i-pause"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
+            </button>
+          </div>
+          <div class="player__now">
+            <p class="mono player__label">Now playing</p>
+            <h3 class="player__title" id="nowTitle">—</h3>
+            <p class="mono player__sub" id="nowSub">—</p>
+            <div class="player__bar" id="seek" data-cursor="Seek"><span id="seekFill"></span></div>
+            <div class="player__times mono"><span id="tCur">0:00</span><span id="tDur">0:00</span></div>
+            <div class="player__controls">
+              <button id="prevBtn" aria-label="Previous" data-cursor="Prev"><svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg></button>
+              <button id="playBtn" class="player__play" aria-label="Play" data-cursor="Play">
+                <svg viewBox="0 0 24 24" class="i-play"><path d="M7 4.5v15l13-7.5z"/></svg>
+                <svg viewBox="0 0 24 24" class="i-pause"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
+              </button>
+              <button id="nextBtn" aria-label="Next" data-cursor="Next"><svg viewBox="0 0 24 24"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <ol class="tracks" id="tracks"></ol>
+      </div>
+    </section>
+
+    <!-- MOTION -->
+    <section class="motion" id="motion">
+      <div class="section-head">
+        <span class="mono">03</span>
+        <h2 class="section-title">Motion</h2>
+        <span class="mono section-head__count" id="filmCount"></span>
+      </div>
+      <div class="films" id="films"></div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <p class="mono contact__kicker">04 — Available for commissions, collaborations & late-night ideas</p>
+      <a class="contact__mail" id="mailLink" href="#" data-cursor="Write">
+        <span class="marquee"><span class="marquee__inner" id="marquee"></span></span>
+      </a>
+      <div class="contact__grid">
+        <div>
+          <p class="mono dim">Email</p>
+          <a class="contact__link" id="mailText" href="#" data-cursor="Write"></a>
+        </div>
+        <div>
+          <p class="mono dim">Elsewhere</p>
+          <ul class="contact__socials" id="socials"></ul>
+        </div>
+        <div>
+          <p class="mono dim">Local time</p>
+          <p class="contact__link" id="clock2">--:--</p>
+        </div>
+      </div>
+      <footer class="footer mono">
+        <span>© <span id="yearFoot">2026</span> <span data-site-name>Queaser</span></span>
+        <a href="#top" data-cursor="Top">Back to top ↑</a>
+      </footer>
+    </section>
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Photo viewer">
+    <div class="lightbox__img" id="lbImgWrap"><img id="lbImg" alt="" /></div>
+    <div class="lightbox__meta mono">
+      <span id="lbIndex">01 / 14</span>
+      <span id="lbTitle"></span>
+      <span id="lbPlace" class="dim"></span>
+    </div>
+    <button class="lightbox__close mono" id="lbClose" data-cursor="Close">Close ✕</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lbPrev" aria-label="Previous" data-cursor="Prev"></button>
+    <button class="lightbox__nav lightbox__nav--next" id="lbNext" aria-label="Next" data-cursor="Next"></button>
+  </div>
+
+  <!-- CINEMA -->
+  <div class="cinema" id="cinema" aria-hidden="true" role="dialog" aria-label="Film viewer">
+    <div class="cinema__frame">
+      <canvas id="cinemaCanvas"></canvas>
+      <div class="cinema__embed" id="cinemaEmbed"></div>
+    </div>
+    <div class="cinema__hud mono">
+      <span id="cineTitle"></span>
+      <span class="cinema__rec"><span class="dot"></span> <span id="cineTc">00:00:00:00</span></span>
+      <button id="cineClose" data-cursor="Close">Close ✕</button>
+    </div>
+    <div class="cinema__progress"><span id="cineProg"></span></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="/js/content.js" defer></script>
+  <script src="/js/audio.js" defer></script>
+  <script src="/js/hero.js" defer></script>
+  <script src="/js/main.js" defer></script>
+</body>
+</html>
